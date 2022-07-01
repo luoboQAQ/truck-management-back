@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lbqaq.mapper.AggrementMapper">
+    <resultMap id="BaseResultMap" type="top.lbqaq.pojo.Aggrement">
+        <!--@mbg.generated-->
+        <!--@Table aggrement-->
+        <id column="a_id" property="aId"/>
+        <result column="a_cost" property="aCost"/>
+        <result column="g_id" property="gId"/>
+        <result column="a_state" property="aState"/>
+        <result column="a_start" property="aStart"/>
+        <result column="a_end" property="aEnd"/>
+        <result column="a_reccom" property="aReccom"/>
+        <result column="a_distance" property="aDistance"/>
+        <result column="a_creatdate" property="aCreatdate"/>
+        <result column="a_transdate" property="aTransdate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        a_id, a_cost, g_id, a_state, a_start, a_end, a_reccom, a_distance, a_creatdate, a_transdate
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from aggrement
+        where a_id = #{aId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from aggrement
+        where a_id = #{aId}
+    </delete>
+    <insert id="insert" keyColumn="a_id" keyProperty="aId" parameterType="top.lbqaq.pojo.Aggrement"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into aggrement (a_cost, g_id, a_state, a_start, a_end, a_reccom, a_distance,
+        a_creatdate, a_transdate)
+        values (#{aCost}, #{gId}, #{aState}, #{aStart}, #{aEnd}, #{aReccom}, #{aDistance},
+        #{aCreatdate}, #{aTransdate})
+    </insert>
+    <insert id="insertSelective" keyColumn="a_id" keyProperty="aId" parameterType="top.lbqaq.pojo.Aggrement"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into aggrement
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="aCost != null">
+                a_cost,
+            </if>
+            <if test="gId != null">
+                g_id,
+            </if>
+            <if test="aState != null">
+                a_state,
+            </if>
+            <if test="aStart != null">
+                a_start,
+            </if>
+            <if test="aEnd != null">
+                a_end,
+            </if>
+            <if test="aReccom != null">
+                a_reccom,
+            </if>
+            <if test="aDistance != null">
+                a_distance,
+            </if>
+            <if test="aCreatdate != null">
+                a_creatdate,
+            </if>
+            <if test="aTransdate != null">
+                a_transdate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="aCost != null">
+                #{aCost},
+            </if>
+            <if test="gId != null">
+                #{gId},
+            </if>
+            <if test="aState != null">
+                #{aState},
+            </if>
+            <if test="aStart != null">
+                #{aStart},
+            </if>
+            <if test="aEnd != null">
+                #{aEnd},
+            </if>
+            <if test="aReccom != null">
+                #{aReccom},
+            </if>
+            <if test="aDistance != null">
+                #{aDistance},
+            </if>
+            <if test="aCreatdate != null">
+                #{aCreatdate},
+            </if>
+            <if test="aTransdate != null">
+                #{aTransdate},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="top.lbqaq.pojo.Aggrement">
+        <!--@mbg.generated-->
+        update aggrement
+        <set>
+            <if test="aCost != null">
+                a_cost = #{aCost},
+            </if>
+            <if test="gId != null">
+                g_id = #{gId},
+            </if>
+            <if test="aState != null">
+                a_state = #{aState},
+            </if>
+            <if test="aStart != null">
+                a_start = #{aStart},
+            </if>
+            <if test="aEnd != null">
+                a_end = #{aEnd},
+            </if>
+            <if test="aReccom != null">
+                a_reccom = #{aReccom},
+            </if>
+            <if test="aDistance != null">
+                a_distance = #{aDistance},
+            </if>
+            <if test="aCreatdate != null">
+                a_creatdate = #{aCreatdate},
+            </if>
+            <if test="aTransdate != null">
+                a_transdate = #{aTransdate},
+            </if>
+        </set>
+        where a_id = #{aId}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="top.lbqaq.pojo.Aggrement">
+        <!--@mbg.generated-->
+        update aggrement
+        set a_cost = #{aCost},
+        g_id = #{gId},
+        a_state = #{aState},
+        a_start = #{aStart},
+        a_end = #{aEnd},
+        a_reccom = #{aReccom},
+        a_distance = #{aDistance},
+        a_creatdate = #{aCreatdate},
+        a_transdate = #{aTransdate}
+        where a_id = #{aId}
+    </update>
+</mapper>

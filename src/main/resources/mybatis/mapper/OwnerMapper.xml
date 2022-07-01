@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lbqaq.mapper.OwnerMapper">
+    <resultMap id="BaseResultMap" type="top.lbqaq.pojo.Owner">
+        <!--@mbg.generated-->
+        <!--@Table `owner`-->
+        <id column="o_id" property="oId"/>
+        <result column="o_name" property="oName"/>
+        <result column="o_balance" property="oBalance"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        o_id, o_name, o_balance
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from `owner`
+        where o_id = #{oId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from `owner`
+        where o_id = #{oId}
+    </delete>
+    <insert id="insert" keyColumn="o_id" keyProperty="oId" parameterType="top.lbqaq.pojo.Owner" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into `owner` (o_name, o_balance)
+        values (#{oName}, #{oBalance})
+    </insert>
+    <insert id="insertSelective" keyColumn="o_id" keyProperty="oId" parameterType="top.lbqaq.pojo.Owner"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into `owner`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="oName != null">
+                o_name,
+            </if>
+            <if test="oBalance != null">
+                o_balance,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="oName != null">
+                #{oName},
+            </if>
+            <if test="oBalance != null">
+                #{oBalance},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="top.lbqaq.pojo.Owner">
+        <!--@mbg.generated-->
+        update `owner`
+        <set>
+            <if test="oName != null">
+                o_name = #{oName},
+            </if>
+            <if test="oBalance != null">
+                o_balance = #{oBalance},
+            </if>
+        </set>
+        where o_id = #{oId}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="top.lbqaq.pojo.Owner">
+        <!--@mbg.generated-->
+        update `owner`
+        set o_name = #{oName},
+        o_balance = #{oBalance}
+        where o_id = #{oId}
+    </update>
+</mapper>

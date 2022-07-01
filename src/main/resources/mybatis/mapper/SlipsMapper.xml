@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lbqaq.mapper.SlipsMapper">
+    <resultMap id="BaseResultMap" type="top.lbqaq.pojo.Slips">
+        <!--@mbg.generated-->
+        <!--@Table slips-->
+        <id column="s_id" property="sId"/>
+        <result column="a_id" property="aId"/>
+        <result column="c_id" property="cId"/>
+        <result column="s_state" property="sState"/>
+        <result column="s_cost" property="sCost"/>
+        <result column="s_num" property="sNum"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        s_id, a_id, c_id, s_state, s_cost, s_num
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from slips
+        where s_id = #{sId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from slips
+        where s_id = #{sId}
+    </delete>
+    <insert id="insert" keyColumn="s_id" keyProperty="sId" parameterType="top.lbqaq.pojo.Slips" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into slips (a_id, c_id, s_state, s_cost, s_num)
+        values (#{aId}, #{cId}, #{sState}, #{sCost}, #{sNum})
+    </insert>
+    <insert id="insertSelective" keyColumn="s_id" keyProperty="sId" parameterType="top.lbqaq.pojo.Slips"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into slips
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="aId != null">
+                a_id,
+            </if>
+            <if test="cId != null">
+                c_id,
+            </if>
+            <if test="sState != null">
+                s_state,
+            </if>
+            <if test="sCost != null">
+                s_cost,
+            </if>
+            <if test="sNum != null">
+                s_num,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="aId != null">
+                #{aId},
+            </if>
+            <if test="cId != null">
+                #{cId},
+            </if>
+            <if test="sState != null">
+                #{sState},
+            </if>
+            <if test="sCost != null">
+                #{sCost},
+            </if>
+            <if test="sNum != null">
+                #{sNum},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="top.lbqaq.pojo.Slips">
+        <!--@mbg.generated-->
+        update slips
+        <set>
+            <if test="aId != null">
+                a_id = #{aId},
+            </if>
+            <if test="cId != null">
+                c_id = #{cId},
+            </if>
+            <if test="sState != null">
+                s_state = #{sState},
+            </if>
+            <if test="sCost != null">
+                s_cost = #{sCost},
+            </if>
+            <if test="sNum != null">
+                s_num = #{sNum},
+            </if>
+        </set>
+        where s_id = #{sId}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="top.lbqaq.pojo.Slips">
+        <!--@mbg.generated-->
+        update slips
+        set a_id = #{aId},
+        c_id = #{cId},
+        s_state = #{sState},
+        s_cost = #{sCost},
+        s_num = #{sNum}
+        where s_id = #{sId}
+    </update>
+</mapper>

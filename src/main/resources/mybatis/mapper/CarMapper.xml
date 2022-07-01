@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lbqaq.mapper.CarMapper">
+    <resultMap id="BaseResultMap" type="top.lbqaq.pojo.Car">
+        <!--@mbg.generated-->
+        <!--@Table car-->
+        <id column="c_id" property="cId"/>
+        <result column="c_name" property="cName"/>
+        <result column="c_com" property="cCom"/>
+        <result column="c_max" property="cMax"/>
+        <result column="c_license" property="cLicense"/>
+        <result column="c_parameter" property="cParameter"/>
+        <result column="c_goodNum" property="cGoodnum"/>
+        <result column="c_badNum" property="cBadnum"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        c_id, c_name, c_com, c_max, c_license, c_parameter, c_goodNum, c_badNum
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from car
+        where c_id = #{cId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from car
+        where c_id = #{cId}
+    </delete>
+    <insert id="insert" keyColumn="c_id" keyProperty="cId" parameterType="top.lbqaq.pojo.Car" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into car (c_name, c_com, c_max, c_license, c_parameter, c_goodNum, c_badNum
+        )
+        values (#{cName}, #{cCom}, #{cMax}, #{cLicense}, #{cParameter}, #{cGoodnum}, #{cBadnum}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="c_id" keyProperty="cId" parameterType="top.lbqaq.pojo.Car"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into car
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cName != null">
+                c_name,
+            </if>
+            <if test="cCom != null">
+                c_com,
+            </if>
+            <if test="cMax != null">
+                c_max,
+            </if>
+            <if test="cLicense != null">
+                c_license,
+            </if>
+            <if test="cParameter != null">
+                c_parameter,
+            </if>
+            <if test="cGoodnum != null">
+                c_goodNum,
+            </if>
+            <if test="cBadnum != null">
+                c_badNum,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cName != null">
+                #{cName},
+            </if>
+            <if test="cCom != null">
+                #{cCom},
+            </if>
+            <if test="cMax != null">
+                #{cMax},
+            </if>
+            <if test="cLicense != null">
+                #{cLicense},
+            </if>
+            <if test="cParameter != null">
+                #{cParameter},
+            </if>
+            <if test="cGoodnum != null">
+                #{cGoodnum},
+            </if>
+            <if test="cBadnum != null">
+                #{cBadnum},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="top.lbqaq.pojo.Car">
+        <!--@mbg.generated-->
+        update car
+        <set>
+            <if test="cName != null">
+                c_name = #{cName},
+            </if>
+            <if test="cCom != null">
+                c_com = #{cCom},
+            </if>
+            <if test="cMax != null">
+                c_max = #{cMax},
+            </if>
+            <if test="cLicense != null">
+                c_license = #{cLicense},
+            </if>
+            <if test="cParameter != null">
+                c_parameter = #{cParameter},
+            </if>
+            <if test="cGoodnum != null">
+                c_goodNum = #{cGoodnum},
+            </if>
+            <if test="cBadnum != null">
+                c_badNum = #{cBadnum},
+            </if>
+        </set>
+        where c_id = #{cId}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="top.lbqaq.pojo.Car">
+        <!--@mbg.generated-->
+        update car
+        set c_name = #{cName},
+        c_com = #{cCom},
+        c_max = #{cMax},
+        c_license = #{cLicense},
+        c_parameter = #{cParameter},
+        c_goodNum = #{cGoodnum},
+        c_badNum = #{cBadnum}
+        where c_id = #{cId}
+    </update>
+</mapper>

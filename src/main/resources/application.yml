@@ -1,1 +1,17 @@
+server:
+  port: 8085
 
+spring:
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+#mybatis相关配置
+mybatis:
+  type-aliases-package: top.lbqaq.pojo,;top.lbqaq.dto
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    #开启自动驼峰转换
+    map-underscore-to-camel-case: true

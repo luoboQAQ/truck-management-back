@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lbqaq.mapper.GoodsMapper">
+    <resultMap id="BaseResultMap" type="top.lbqaq.pojo.Goods">
+        <!--@mbg.generated-->
+        <!--@Table goods-->
+        <id column="g_id" property="gId"/>
+        <result column="g_name" property="gName"/>
+        <result column="g_num" property="gNum"/>
+        <result column="g_unit" property="gUnit"/>
+        <result column="g_oid" property="gOid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        g_id, g_name, g_num, g_unit, g_oid
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from goods
+        where g_id = #{gId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from goods
+        where g_id = #{gId}
+    </delete>
+    <insert id="insert" keyColumn="g_id" keyProperty="gId" parameterType="top.lbqaq.pojo.Goods" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into goods (g_name, g_num, g_unit, g_oid)
+        values (#{gName}, #{gNum}, #{gUnit}, #{gOid})
+    </insert>
+    <insert id="insertSelective" keyColumn="g_id" keyProperty="gId" parameterType="top.lbqaq.pojo.Goods"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="gName != null">
+                g_name,
+            </if>
+            <if test="gNum != null">
+                g_num,
+            </if>
+            <if test="gUnit != null">
+                g_unit,
+            </if>
+            <if test="gOid != null">
+                g_oid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="gName != null">
+                #{gName},
+            </if>
+            <if test="gNum != null">
+                #{gNum},
+            </if>
+            <if test="gUnit != null">
+                #{gUnit},
+            </if>
+            <if test="gOid != null">
+                #{gOid},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="top.lbqaq.pojo.Goods">
+        <!--@mbg.generated-->
+        update goods
+        <set>
+            <if test="gName != null">
+                g_name = #{gName},
+            </if>
+            <if test="gNum != null">
+                g_num = #{gNum},
+            </if>
+            <if test="gUnit != null">
+                g_unit = #{gUnit},
+            </if>
+            <if test="gOid != null">
+                g_oid = #{gOid},
+            </if>
+        </set>
+        where g_id = #{gId}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="top.lbqaq.pojo.Goods">
+        <!--@mbg.generated-->
+        update goods
+        set g_name = #{gName},
+        g_num = #{gNum},
+        g_unit = #{gUnit},
+        g_oid = #{gOid}
+        where g_id = #{gId}
+    </update>
+</mapper>
