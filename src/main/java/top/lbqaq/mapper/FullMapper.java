@@ -11,6 +11,4 @@ public interface FullMapper {
     List<Full> selectBySId(@Param("sId") Long sId);
 
     List<Full> selectAll();
-
-
 }
