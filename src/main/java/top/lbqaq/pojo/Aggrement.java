@@ -73,4 +73,10 @@ public class Aggrement {
      */
     @ApiModelProperty(value = "运输日期")
     private Date aTransdate;
+
+    /**
+     * 剩余货物数量
+     */
+    @ApiModelProperty(value = "剩余货物数量")
+    private Long aRemnum;
 }
