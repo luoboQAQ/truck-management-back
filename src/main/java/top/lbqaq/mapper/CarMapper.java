@@ -56,4 +56,8 @@ public interface CarMapper {
      * @return update count
      */
     int updateByPrimaryKey(Car record);
+
+    int addGoodNumByCid(Long cId);
+
+    int addBadNumByCid(Long cId);
 }

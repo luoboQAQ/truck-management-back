@@ -15,7 +15,14 @@
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        c_id, c_name, c_com, c_max, c_license, c_parameter, c_goodNum, c_badNum
+        c_id,
+        c_name,
+        c_com,
+        c_max,
+        c_license,
+        c_parameter,
+        c_goodNum,
+        c_badNum
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         <!--@mbg.generated-->
@@ -26,15 +33,14 @@
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         <!--@mbg.generated-->
-        delete from car
+        delete
+        from car
         where c_id = #{cId}
     </delete>
     <insert id="insert" keyColumn="c_id" keyProperty="cId" parameterType="top.lbqaq.pojo.Car" useGeneratedKeys="true">
         <!--@mbg.generated-->
-        insert into car (c_name, c_com, c_max, c_license, c_parameter, c_goodNum, c_badNum
-        )
-        values (#{cName}, #{cCom}, #{cMax}, #{cLicense}, #{cParameter}, #{cGoodnum}, #{cBadnum}
-        )
+        insert into car (c_name, c_com, c_max, c_license, c_parameter, c_goodNum, c_badNum)
+        values (#{cName}, #{cCom}, #{cMax}, #{cLicense}, #{cParameter}, #{cGoodnum}, #{cBadnum})
     </insert>
     <insert id="insertSelective" keyColumn="c_id" keyProperty="cId" parameterType="top.lbqaq.pojo.Car"
             useGeneratedKeys="true">
@@ -125,6 +131,18 @@
         c_parameter = #{cParameter},
         c_goodNum = #{cGoodnum},
         c_badNum = #{cBadnum}
+        where c_id = #{cId}
+    </update>
+
+    <update id="addGoodNumByCid" parameterType="Long">
+        update car
+        set c_goodNum = c_goodNum + 1
+        where c_id = #{cId}
+    </update>
+
+    <update id="addBadNumByCid" parameterType="Long">
+        update car
+        set c_badNum = c_badNum + 1
         where c_id = #{cId}
     </update>
 </mapper>

@@ -46,4 +46,18 @@ public class CarService {
         return carMapper.updateByPrimaryKey(record);
     }
 
+    /**
+     * 增加好/差评
+     *
+     * @param cId    司机id
+     * @param isGood 是否为好评
+     * @return 操作影响的行数
+     */
+    public int addFeedBack(Long cId, boolean isGood) {
+        if (isGood) {
+            return carMapper.addGoodNumByCid(cId);
+        } else {
+            return carMapper.addBadNumByCid(cId);
+        }
+    }
 }

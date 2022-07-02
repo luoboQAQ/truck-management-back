@@ -25,11 +25,11 @@ import java.util.List;
 public class FullController {
 
     @Resource
-    FullService fullService;
+    private FullService fullService;
 
     @GetMapping("/selectAll")
     @ApiOperation("获取全部信息")
-    Result selectAll(Integer page, Integer size) {
+    public Result selectAll(Integer page, Integer size) {
         List<Full> fullList;
         boolean isHasNextPage = false;
         if (page == null || size == null) {
@@ -45,7 +45,7 @@ public class FullController {
 
     @GetMapping("/selectBySid")
     @ApiOperation("根据sid查询")
-    Result selectBySid(@RequestParam("sId") Long sId) {
+    public Result selectBySid(@RequestParam("sId") Long sId) {
         List<Full> fulls = fullService.selectBySId(sId);
         if (fulls.isEmpty()) {
             return new Result().setCode(404).setMessage("结果为空");
