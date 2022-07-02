@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.lbqaq.mapper.OrderMapper">
+    <select id="getAllOrder" resultType="OrderDTO">
+        select s.s_id,
+               a.a_id,
+               c.c_id,
+               s.s_state,
+               a.a_start,
+               a.a_end,
+               a.a_distance,
+               a.a_creatdate,
+               a.a_transdate,
+               c.c_name,
+               c.c_license,
+               c.c_parameter,
+               c.c_goodNum,
+               c.c_badNum
+        from slips as s,
+             aggrement as a,
+             car as c
+        where s.a_id = a.a_id
+          and s.c_id = c.c_id
+    </select>
+</mapper>
