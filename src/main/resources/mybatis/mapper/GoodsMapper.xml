@@ -8,11 +8,11 @@
         <result column="g_name" property="gName"/>
         <result column="g_num" property="gNum"/>
         <result column="g_unit" property="gUnit"/>
-        <result column="g_oid" property="gOid"/>
+        <result column="o_id" property="oId"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        g_id, g_name, g_num, g_unit, g_oid
+        g_id, g_name, g_num, g_unit, o_id
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         <!--@mbg.generated-->
@@ -28,8 +28,8 @@
     </delete>
     <insert id="insert" keyColumn="g_id" keyProperty="gId" parameterType="top.lbqaq.pojo.Goods" useGeneratedKeys="true">
         <!--@mbg.generated-->
-        insert into goods (g_name, g_num, g_unit, g_oid)
-        values (#{gName}, #{gNum}, #{gUnit}, #{gOid})
+        insert into goods (g_name, g_num, g_unit, o_id)
+        values (#{gName}, #{gNum}, #{gUnit}, #{oId})
     </insert>
     <insert id="insertSelective" keyColumn="g_id" keyProperty="gId" parameterType="top.lbqaq.pojo.Goods"
             useGeneratedKeys="true">
@@ -45,8 +45,8 @@
             <if test="gUnit != null">
                 g_unit,
             </if>
-            <if test="gOid != null">
-                g_oid,
+            <if test="oId != null">
+                o_id,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -59,8 +59,8 @@
             <if test="gUnit != null">
                 #{gUnit},
             </if>
-            <if test="gOid != null">
-                #{gOid},
+            <if test="oId != null">
+                #{oId},
             </if>
         </trim>
     </insert>
@@ -77,8 +77,8 @@
             <if test="gUnit != null">
                 g_unit = #{gUnit},
             </if>
-            <if test="gOid != null">
-                g_oid = #{gOid},
+            <if test="oId != null">
+                o_id = #{oId},
             </if>
         </set>
         where g_id = #{gId}
@@ -89,7 +89,7 @@
         set g_name = #{gName},
         g_num = #{gNum},
         g_unit = #{gUnit},
-        g_oid = #{gOid}
+        o_id = #{oId}
         where g_id = #{gId}
     </update>
 </mapper>
