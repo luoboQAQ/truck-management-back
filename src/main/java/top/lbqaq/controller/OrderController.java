@@ -1,5 +1,7 @@
 package top.lbqaq.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +29,15 @@ public class OrderController {
     @GetMapping("/getAllOrder")
     public Result getAllOrder(Integer page, Integer size) {
         List<OrderDTO> allOrder;
+        boolean isHasNextPage = false;
         if (page == null || size == null) {
             allOrder = orderService.getAllOrder();
         } else {
-            allOrder = orderService.getAllOrder(page, size);
+            PageHelper.startPage(page, size);
+            allOrder = orderService.getAllOrder();
+            PageInfo<OrderDTO> pages = new PageInfo<>(allOrder);
+            isHasNextPage = pages.isHasNextPage();
         }
-        return new Result().setCode(200).setMessage("成功").setData(allOrder);
+        return new Result().setCode(200).setMessage("成功").setData(allOrder).setHasNextPage(isHasNextPage);
     }
 }

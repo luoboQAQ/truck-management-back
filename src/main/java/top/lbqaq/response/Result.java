@@ -29,4 +29,7 @@ public class Result {
 
     @ApiModelProperty("总数据量")
     private long count;
+
+    @ApiModelProperty("是否还有下一页")
+    private boolean hasNextPage;
 }
