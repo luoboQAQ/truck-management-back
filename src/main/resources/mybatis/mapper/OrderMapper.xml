@@ -18,7 +18,8 @@
                c.c_license,
                c.c_parameter,
                c.c_goodNum,
-               c.c_badNum
+               c.c_badNum,
+               c.c_max
         from slips as s,
              aggrement as a,
              car as c
