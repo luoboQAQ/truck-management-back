@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.lbqaq.mapper.SignMapper">
+    <select id="getAllSign" resultType="SigningDTO">
+        select c.c_license,
+               s.s_state,
+               a.a_start,
+               a.a_end,
+               a.a_transdate,
+               s.s_num
+        from slips as s,
+             aggrement as a,
+             car as c
+        where s.a_id = a.a_id
+          and s.c_id = c.c_id
+    </select>
+
+    <select id="getSignByLicenseOrDate" resultType="SigningDTO">
+        <if test="date!=null">
+            <if test="license!=null">
+                select
+                c.c_license,
+                s.s_state,
+                a.a_start,
+                a.a_end,
+                a.a_transdate,
+                s.s_num,
+                c.c_id
+                from slips as s,
+                aggrement as a,
+                car as c
+                where c.c_license = #{license}
+                and a.a_transdate=#{date}
+                and s.a_id = a.a_id
+                and s.c_id = c.c_id
+            </if>
+            select c.c_license,
+            s.s_state,
+            a.a_start,
+            a.a_end,
+            a.a_transdate,
+            s.s_num,
+            c.c_id
+            from slips as s,
+            aggrement as a,
+            car as c
+            where a.a_transdate = #{date}
+            and s.a_id = a.a_id
+            and s.c_id = c.c_id
+        </if>
+        select c.c_license,
+        s.s_state,
+        a.a_start,
+        a.a_end,
+        a.a_transdate,
+        s.s_num,
+        c.c_id
+        from slips as s,
+        aggrement as a,
+        car as c
+        where c.c_license = #{license}
+        and s.a_id = a.a_id
+        and s.c_id = c.c_id
+    </select>
+
+    <select id="getSignByNumOrDate" resultType="SigningDTO">
+        <if test="date!=null">
+            <if test="Num=!null">
+                select c.c_license,
+                s.s_state,
+                a.a_start,
+                a.a_end,
+                a.a_transdate,
+                s.s_num,
+                c.c_id
+                from slips as s,
+                aggrement as a,
+                car as c
+                where s.s_id=#{Num}
+                and a.a_transdate=#{date}
+                and s.a_id = a.a_id
+                and s.c_id = c.c_id
+            </if>
+            select c.c_license,
+            s.s_state,
+            a.a_start,
+            a.a_end,
+            a.a_transdate,
+            s.s_num,
+            c.c_id
+            from slips as s,
+            aggrement as a,
+            car as c
+            where a.a_transdate = #{date}
+            and s.a_id = a.a_id
+            and s.c_id = c.c_id
+        </if>
+        select c.c_license,
+        s.s_state,
+        a.a_start,
+        a.a_end,
+        a.a_transdate,
+        s.s_num,
+        c.c_id
+        from slips as s,
+        aggrement as a,
+        car as c
+        where s.s_id=#{Num}
+        and s.a_id = a.a_id
+        and s.c_id = c.c_id
+    </select>
+
+    <select id="getUnSign" resultType="SigningDTO2" parameterType="String">
+        select c.c_license,
+               s.s_state,
+               a.a_start,
+               a.a_end,
+               a.a_transdate,
+               s.s_num,
+               c.c_id
+        from slips as s,
+             aggrement as a,
+             car as c
+        where c.c_name = #{Num}
+          and s.a_id = a.a_id
+          and s.c_id = c.c_id
+    </select>
+</mapper>
