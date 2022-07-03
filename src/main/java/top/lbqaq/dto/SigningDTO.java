@@ -23,7 +23,7 @@ public class SigningDTO {
      * 车牌号
      */
     @ApiModelProperty(value = "运输单号")
-    private String cId;
+    private String sId;
 
     /**
      * 车牌号
@@ -60,6 +60,13 @@ public class SigningDTO {
      */
     @ApiModelProperty(value = "拍照")
     private String sPhoto;
+
+    /**
+     * 签收日期
+     */
+    @ApiModelProperty(value = "签收日期")
+    private String sSign;
+
 
 }
 

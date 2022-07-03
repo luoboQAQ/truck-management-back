@@ -10,7 +10,8 @@
                a.a_start,
                a.a_end,
                a.a_transdate,
-               s.s_num
+               s.s_num,
+               s.s_id
         from slips as s,
              aggrement as a,
              car as c
@@ -19,113 +20,94 @@
     </select>
 
     <select id="getSignByLicenseOrDate" resultType="SigningDTO">
-        <if test="date!=null">
-            <if test="license!=null">
-                select
-                c.c_license,
-                s.s_state,
-                a.a_start,
-                a.a_end,
-                a.a_transdate,
-                s.s_num,
-                c.c_id
-                from slips as s,
-                aggrement as a,
-                car as c
-                where c.c_license = #{license}
-                and a.a_transdate=#{date}
-                and s.a_id = a.a_id
-                and s.c_id = c.c_id
-            </if>
-            select c.c_license,
-            s.s_state,
-            a.a_start,
-            a.a_end,
-            a.a_transdate,
-            s.s_num,
-            c.c_id
-            from slips as s,
-            aggrement as a,
-            car as c
-            where a.a_transdate = #{date}
-            and s.a_id = a.a_id
-            and s.c_id = c.c_id
-        </if>
         select c.c_license,
         s.s_state,
         a.a_start,
         a.a_end,
         a.a_transdate,
         s.s_num,
-        c.c_id
+        s.s_id
         from slips as s,
         aggrement as a,
         car as c
-        where c.c_license = #{license}
-        and s.a_id = a.a_id
-        and s.c_id = c.c_id
+        <where>
+            s.a_id = a.a_id
+            and s.c_id = c.c_id
+            <if test="license != null">
+                and c.c_license = #{license}
+            </if>
+            <if test="date != null">
+                and date_format(a.a_transdate, '%Y-%m-%d') = #{date}
+            </if>
+        </where>
     </select>
 
     <select id="getSignByNumOrDate" resultType="SigningDTO">
-        <if test="date!=null">
-            <if test="Num=!null">
-                select c.c_license,
-                s.s_state,
-                a.a_start,
-                a.a_end,
-                a.a_transdate,
-                s.s_num,
-                c.c_id
-                from slips as s,
-                aggrement as a,
-                car as c
-                where s.s_id=#{Num}
-                and a.a_transdate=#{date}
-                and s.a_id = a.a_id
-                and s.c_id = c.c_id
-            </if>
-            select c.c_license,
-            s.s_state,
-            a.a_start,
-            a.a_end,
-            a.a_transdate,
-            s.s_num,
-            c.c_id
-            from slips as s,
-            aggrement as a,
-            car as c
-            where a.a_transdate = #{date}
-            and s.a_id = a.a_id
-            and s.c_id = c.c_id
-        </if>
-        select c.c_license,
+        select
+        c.c_license,
         s.s_state,
         a.a_start,
         a.a_end,
         a.a_transdate,
         s.s_num,
-        c.c_id
+        s.s_id
         from slips as s,
         aggrement as a,
         car as c
-        where s.s_id=#{Num}
-        and s.a_id = a.a_id
-        and s.c_id = c.c_id
+        <where>
+            s.a_id = a.a_id
+            and s.c_id = c.c_id
+            <if test="Num != null">
+                and s.s_id = #{Num}
+            </if>
+            <if test="date != null">
+                and date_format(a.a_transdate, '%Y-%m-%d') = #{date}
+            </if>
+        </where>
     </select>
 
-    <select id="getUnSign" resultType="SigningDTO2" parameterType="String">
-        select c.c_license,
-               s.s_state,
-               a.a_start,
-               a.a_end,
-               a.a_transdate,
-               s.s_num,
-               c.c_id
+    <select id="getUnSign" resultType="SigningDTO" parameterType="String">
+        select
+        c.c_license,
+        a.a_start,
+        a.a_end,
+        a.a_transdate,
+        s.s_num,
+        s.s_id
         from slips as s,
-             aggrement as a,
-             car as c
-        where c.c_name = #{Num}
-          and s.a_id = a.a_id
-          and s.c_id = c.c_id
+        aggrement as a,
+        car as c,
+        `owner` as o,
+        goods as g
+        <where>
+            s.a_id = a.a_id
+            and s.c_id = c.c_id
+            and o.o_id = g.o_id
+            and g.g_id = a.g_id
+            <if test="name != null">
+                and o.o_name = #{name}
+            </if>
+            <if test="date != null">
+                and date_format(a.a_transdate, '%Y-%m-%d') = #{date}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateState" parameterType="Long">
+        update slips
+        set s_state='已签收'
+        where s_id = #{serial}
+    </update>
+
+    <update id="fundApp">
+        update `owner`
+        set o_balance=#{numm}
+        where o_id = #{id}
+    </update>
+
+    <select id="fundSelect" resultType="int" parameterType="Long">
+        select o_balance
+        from `owner`
+        where o_id = #{id}
     </select>
 </mapper>

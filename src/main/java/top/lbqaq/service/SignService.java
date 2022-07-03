@@ -1,14 +1,10 @@
 package top.lbqaq.service;
 
-import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import top.lbqaq.dto.SigningDTO;
-import top.lbqaq.dto.SigningDTO2;
 import top.lbqaq.mapper.SignMapper;
 
-
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,8 +31,8 @@ public class SignService {
      *
      * @return 订货单
      */
-    public List<SigningDTO> getSign(long num, Date date) {
-        return signMapper.getSignByNumOrDate(num,date);
+    public List<SigningDTO> getSign(Long num, String date) {
+        return signMapper.getSignByNumOrDate(num, date);
     }
 
     /**
@@ -44,8 +40,8 @@ public class SignService {
      *
      * @return 订货单
      */
-    public List<SigningDTO> getSign(String license,Date date) {
-        return signMapper.getSignByLicenseOrDate(license,date);
+    public List<SigningDTO> getSign(String license, String date) {
+        return signMapper.getSignByLicenseOrDate(license, date);
     }
 
     /**
@@ -53,9 +49,21 @@ public class SignService {
      *
      * @return 订货单
      */
-    public List<SigningDTO2> getUnSign(String num) {
-        return signMapper.getUnSign(num);
+    public List<SigningDTO> getUnSign(String name, String date) {
+        return signMapper.getUnSign(name, date);
     }
 
 
+    public int updateState(Long serial) {
+        return signMapper.updateState(serial);
+    }
+
+    public int funApp(int numm,Long id) {
+        return signMapper.fundApp(numm,id);
+    }
+
+    public int fundSelect(Long id) {
+        return signMapper.fundSelect(id);
+    }
 }
+
