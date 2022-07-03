@@ -1,7 +1,10 @@
 package top.lbqaq.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import top.lbqaq.pojo.Car;
+
+import java.util.List;
 
 /**
  * @author luoboQAQ
@@ -60,4 +63,9 @@ public interface CarMapper {
     int addGoodNumByCid(Long cId);
 
     int addBadNumByCid(Long cId);
+
+    List<Car> selectAll();
+
+    Long selectCidByCName(@Param("cName") String cName);
+
 }

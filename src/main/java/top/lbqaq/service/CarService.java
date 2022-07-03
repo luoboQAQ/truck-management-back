@@ -5,6 +5,7 @@ import top.lbqaq.mapper.CarMapper;
 import top.lbqaq.pojo.Car;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author luoboQAQ
@@ -59,5 +60,13 @@ public class CarService {
         } else {
             return carMapper.addBadNumByCid(cId);
         }
+    }
+
+    public List<Car> selectAll() {
+        return carMapper.selectAll();
+    }
+
+    public Long selectCidByCName(String cName) {
+        return carMapper.selectCidByCName(cName);
     }
 }
