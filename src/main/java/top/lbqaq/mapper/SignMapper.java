@@ -3,9 +3,7 @@ package top.lbqaq.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import top.lbqaq.dto.SigningDTO;
-import top.lbqaq.dto.SigningDTO2;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,17 +24,26 @@ public interface SignMapper {
      *
      * @return 所有运输单
      */
-    List<SigningDTO>  getSignByLicenseOrDate(@Param("license")String license,@Param("date") Date date);
+    List<SigningDTO> getSignByLicenseOrDate(@Param("license") String license, @Param("date") String date);
+
     /**
      * 通过单号或者加上时间查询所有运输单
      *
      * @return 所有运输单
      */
-    List<SigningDTO>  getSignByNumOrDate(@Param("Num")long num, @Param("date")Date date);
+    List<SigningDTO> getSignByNumOrDate(@Param("Num") Long num, @Param("date") String date);
+
     /**
      * 通过客户查询所有运输单
      *
      * @return 所有运输单
      */
-    List<SigningDTO2> getUnSign(String num);
+    List<SigningDTO> getUnSign(@Param("name") String name, @Param("date") String date);
+
+    int updateState(Long serial);
+
+
+    int fundApp(@Param("numm")int numm,@Param("id") Long id);
+
+    int fundSelect(Long id);
 }
