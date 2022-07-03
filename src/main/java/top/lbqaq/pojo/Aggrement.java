@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -83,6 +84,7 @@ public class Aggrement {
      */
     @JsonProperty("aTransdate")
     @ApiModelProperty(value = "运输日期")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date aTransdate;
 
     /**

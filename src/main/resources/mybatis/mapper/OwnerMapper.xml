@@ -19,6 +19,16 @@
         from `owner`
         where o_id = #{oId}
     </select>
+    <select id="selectByName" parameterType="java.lang.String" resultType="java.lang.Long">
+        select o_id
+        from `owner`
+        where o_name = #{o_name}
+    </select>
+    <select id="countByName" parameterType="java.lang.String" resultType="int">
+        select count(*)
+        from `owner`
+        where o_name = #{o_name}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         <!--@mbg.generated-->
         delete from `owner`

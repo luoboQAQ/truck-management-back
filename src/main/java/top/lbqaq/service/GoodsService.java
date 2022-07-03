@@ -5,6 +5,7 @@ import top.lbqaq.mapper.GoodsMapper;
 import top.lbqaq.pojo.Goods;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author luoboQAQ
@@ -36,6 +37,9 @@ public class GoodsService {
         return goodsMapper.selectByPrimaryKey(gId);
     }
 
+    public long selectByOid(Long oId) {
+        return goodsMapper.selectByOid(oId);
+    }
 
     public int updateByPrimaryKeySelective(Goods record) {
         return goodsMapper.updateByPrimaryKeySelective(record);
@@ -46,4 +50,7 @@ public class GoodsService {
         return goodsMapper.updateByPrimaryKey(record);
     }
 
+    public List<Goods> selectAllByOid(long oid) {
+        return goodsMapper.selectAllByOid(oid);
+    }
 }

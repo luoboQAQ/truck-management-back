@@ -3,6 +3,8 @@ package top.lbqaq.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import top.lbqaq.pojo.Goods;
 
+import java.util.List;
+
 /**
  * @author luoboQAQ
  * @Date 2022/7/1
@@ -42,6 +44,14 @@ public interface GoodsMapper {
     Goods selectByPrimaryKey(Long gId);
 
     /**
+     * select by primary key
+     *
+     * @param oId primary key
+     * @return object by primary key
+     */
+    long selectByOid(Long oId);
+
+    /**
      * update record selective
      *
      * @param record the updated record
@@ -56,4 +66,6 @@ public interface GoodsMapper {
      * @return update count
      */
     int updateByPrimaryKey(Goods record);
+
+    List<Goods> selectAllByOid(long oid);
 }

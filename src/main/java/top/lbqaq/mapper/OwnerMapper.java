@@ -42,6 +42,14 @@ public interface OwnerMapper {
     Owner selectByPrimaryKey(Long oId);
 
     /**
+     * select by primary key
+     *
+     * @param oname primary key
+     * @return object by primary key
+     */
+    long selectByName(String oname);
+
+    /**
      * update record selective
      *
      * @param record the updated record
@@ -56,4 +64,7 @@ public interface OwnerMapper {
      * @return update count
      */
     int updateByPrimaryKey(Owner record);
+
+
+    int countByName(String name);
 }

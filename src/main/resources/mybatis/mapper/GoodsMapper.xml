@@ -21,13 +21,22 @@
         from goods
         where g_id = #{gId}
     </select>
+    <select id="selectByOid" parameterType="java.lang.Long" resultType="java.lang.Long">
+        select max(g_id)
+        from goods
+        where o_id = #{oId}
+    </select>
+    <select id="selectAllByOid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select *
+        from goods
+        where o_id = #{oId}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         <!--@mbg.generated-->
         delete from goods
         where g_id = #{gId}
     </delete>
     <insert id="insert" keyColumn="g_id" keyProperty="gId" parameterType="top.lbqaq.pojo.Goods" useGeneratedKeys="true">
-        <!--@mbg.generated-->
         insert into goods (g_name, g_num, g_unit, o_id)
         values (#{gName}, #{gNum}, #{gUnit}, #{oId})
     </insert>

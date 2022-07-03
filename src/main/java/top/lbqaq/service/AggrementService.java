@@ -37,6 +37,9 @@ public class AggrementService {
         return aggrementMapper.selectByPrimaryKey(aId);
     }
 
+    public List<Aggrement> selectByOid(Long oId) {
+        return aggrementMapper.selectByOid(oId);
+    }
 
     public int updateByPrimaryKeySelective(Aggrement record) {
         return aggrementMapper.updateByPrimaryKeySelective(record);

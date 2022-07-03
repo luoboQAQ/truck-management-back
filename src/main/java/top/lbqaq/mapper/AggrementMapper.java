@@ -45,6 +45,14 @@ public interface AggrementMapper {
     Aggrement selectByPrimaryKey(Long aId);
 
     /**
+     * select by primary key
+     *
+     * @param oId primary key
+     * @return object by primary key
+     */
+    List<Aggrement> selectByOid(Long oId);
+
+    /**
      * update record selective
      *
      * @param record the updated record

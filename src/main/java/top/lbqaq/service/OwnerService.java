@@ -36,6 +36,9 @@ public class OwnerService {
         return ownerMapper.selectByPrimaryKey(oId);
     }
 
+    public long selectByName(String oname) {
+        return ownerMapper.selectByName(oname);
+    }
 
     public int updateByPrimaryKeySelective(Owner record) {
         return ownerMapper.updateByPrimaryKeySelective(record);
@@ -46,4 +49,7 @@ public class OwnerService {
         return ownerMapper.updateByPrimaryKey(record);
     }
 
+    public int countByName(String name) {
+        return ownerMapper.countByName(name);
+    }
 }

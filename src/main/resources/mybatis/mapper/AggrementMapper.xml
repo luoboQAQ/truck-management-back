@@ -28,6 +28,14 @@
     from aggrement
     where a_id = #{aId}
   </select>
+  <select id="selectByOid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    a_id, a_cost, aggrement.g_id, a_state, a_start, a_end, a_reccom, a_distance, a_creatdate, a_transdate,
+    a_remnum
+    from aggrement,goods
+    where goods.o_id=#{oId} and goods.g_id = aggrement.g_id
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from aggrement
