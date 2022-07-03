@@ -23,16 +23,24 @@ public class SlipsController {
     @Resource
     private SlipsService slipsService;
 
-
     @PostMapping("/insertSlips")
     @ApiOperation("插入运输单信息")
     public Result insertSlips(@RequestBody Slips slips) {
         slips.setSState("待出发");
-        System.out.println(slips.getAId());
         if (slipsService.insertSelective(slips) == 0) {
             return new Result().setCode(1200).setMessage("插入失败");
         } else {
             return new Result().setCode(200).setMessage("插入成功");
+        }
+    }
+
+    @PostMapping("/updateSlips")
+    @ApiOperation("更新运输单信息")
+    public Result updateSlips(@RequestBody Slips slips) {
+        if (slipsService.updateByPrimaryKeySelective(slips) == 0) {
+            return new Result().setCode(1200).setMessage("更新失败");
+        } else {
+            return new Result().setCode(200).setMessage("更新成功");
         }
     }
 }
