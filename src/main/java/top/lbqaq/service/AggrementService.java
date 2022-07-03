@@ -5,6 +5,7 @@ import top.lbqaq.mapper.AggrementMapper;
 import top.lbqaq.pojo.Aggrement;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author luoboQAQ
@@ -46,5 +47,8 @@ public class AggrementService {
         return aggrementMapper.updateByPrimaryKey(record);
     }
 
+    public List<Aggrement> selectByaState(String aState) {
+        return aggrementMapper.selectByaState(aState);
+    }
 }
 

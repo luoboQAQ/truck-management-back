@@ -1,7 +1,10 @@
 package top.lbqaq.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import top.lbqaq.pojo.Aggrement;
+
+import java.util.List;
 
 /**
  * @author luoboQAQ
@@ -56,4 +59,6 @@ public interface AggrementMapper {
      * @return update count
      */
     int updateByPrimaryKey(Aggrement record);
+
+    List<Aggrement> selectByaState(@Param("aState") String aState);
 }
